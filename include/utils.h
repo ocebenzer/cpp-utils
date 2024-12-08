@@ -8,6 +8,21 @@
 
 namespace ocb {
 
+struct Position {
+    int row; int col;
+
+    bool operator<(const Position& rhs) const {
+        return row < rhs.row || (row == rhs.row && col < rhs.col);
+    }
+
+    bool operator==(const Position&) const = default;
+    Position& operator+=(const Position& rhs) {
+        row += rhs.row;
+        col += rhs.col;
+        return *this;
+    }
+};
+
 // returns file content as a list of lines
 const auto read_lines = [] (const auto& file_path) {
     std::vector<std::string> lines;
@@ -41,3 +56,11 @@ const auto find_all = [] (const auto& string, const std::regex& regex) {
 };
 
 } // namespace ocb::utils
+
+template <>
+struct std::hash<ocb::Position> {
+    std::size_t operator()(const ocb::Position& pos) const noexcept {
+        const auto str = std::to_string(pos.row) + std::to_string(pos.col);
+        return std::hash<std::string>()(str);
+    }
+}; // namespace std
