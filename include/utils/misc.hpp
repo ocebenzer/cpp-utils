@@ -11,7 +11,7 @@
 namespace ocb {
 
 // returns file content as a list of lines
-const auto read_lines = [] (const auto& file_path) {
+constexpr auto read_lines = [] (const auto& file_path) {
     std::vector<std::string> lines;
 
     std::ifstream file{file_path};
