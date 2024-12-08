@@ -63,4 +63,4 @@ struct std::hash<ocb::Position> {
         const auto str = std::to_string(pos.row) + std::to_string(pos.col);
         return std::hash<std::string>()(str);
     }
-}; // namespace std
+};
