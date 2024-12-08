@@ -6,6 +6,8 @@
 #include <filesystem>
 #include <regex>
 
+#include <bigint.hpp>
+
 namespace ocb {
 
 // returns file content as a list of lines
@@ -39,5 +41,22 @@ const auto find_all = [] (const auto& string, const std::regex& regex) {
 
     return matches;
 };
+
+BigInt find_pow_of_2(const BigInt& pow) {
+    if (pow < 64) {
+        int64_t ll;
+        std::stringstream ss{pow.to_string()};
+        ss >> ll;
+        return BigInt{ll};
+    }
+
+    const auto half_pow{find_pow_of_2(pow/2)};
+
+    if (pow % 2 == 0) {
+        return half_pow * half_pow;
+    }
+
+    return half_pow * half_pow * 2;
+}
 
 } // namespace ocb::utils
