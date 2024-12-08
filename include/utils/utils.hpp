@@ -1,4 +1,4 @@
 #pragma once
 
-#include "position.hpp"
-#include "misc.hpp"
+#include "utils/position.hpp"
+#include "utils/misc.hpp"
