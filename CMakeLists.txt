@@ -3,6 +3,4 @@ project(utils)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_library(utils
-        src/position.cpp
-)
+add_library(utils src/position.cpp)
