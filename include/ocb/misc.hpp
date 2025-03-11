@@ -6,8 +6,6 @@
 #include <filesystem>
 #include <regex>
 
-#include <bigint/bigint.hpp>
-
 namespace ocb {
     // returns file content as a list of lines
     constexpr auto read_lines = [](const auto &file_path) {
@@ -39,27 +37,6 @@ namespace ocb {
         }
 
         return matches;
-    };
-
-    constexpr auto find_pow_of_2 = [](const auto &pow) {
-        const auto find_pow_of_2_impl = [](const auto &pow, const auto &find_pow_of_2_ref) {
-            if (pow < 64) {
-                int64_t ll;
-                std::stringstream ss{pow.to_string()};
-                ss >> ll;
-                return BigInt{ll};
-            }
-
-            const BigInt half_pow{find_pow_of_2_ref(pow / 2, find_pow_of_2_ref)};
-
-            if (pow % 2 == 0) {
-                return half_pow * half_pow;
-            }
-
-            return half_pow * half_pow * 2;
-        };
-
-        return find_pow_of_2_impl(pow, find_pow_of_2_impl);
     };
 
     constexpr auto print_list = [](const auto &list, const std::string &end = "\n") {
