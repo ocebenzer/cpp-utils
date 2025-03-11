@@ -100,8 +100,8 @@ namespace ocb {
         }
     };
 
-    template<typename T, std::size_t N>
-    vector(T...) -> vector<T, N>;
+    template<typename T, typename... Ts>
+    vector(T, Ts...) -> vector<T, 1 + sizeof...(Ts)>;
 
     template<typename T, std::size_t N = 2>
     using vector2 = vector<T, N>;
