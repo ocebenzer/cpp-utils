@@ -3,4 +3,7 @@ project(utils)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_library(utils src/position.cpp)
+find_package(Boost COMPONENTS container_hash functional)
+if (Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+endif ()

@@ -41,7 +41,7 @@ namespace ocb {
         vector operator/(const vector &rhs) const { return copy_transform_binary_op(rhs, std::divides()); }
         vector operator%(const vector &rhs) const { return copy_transform_binary_op(rhs, std::modulus()); }
 
-        /* Vector Comparasions */
+        /* Comparisons */
 
         bool operator<(const vector &rhs) const {
             for (const auto &[left, right]
@@ -62,6 +62,8 @@ namespace ocb {
         }
 
         bool operator!=(const vector &rhs) const { return !(*this == rhs); }
+
+        /* Stream Operators */
 
         friend std::ostream &operator<<(std::ostream &o, const vector &v) {
             o << "[";
